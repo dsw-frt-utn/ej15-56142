@@ -3,12 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Dsw2026Ej15.Domain.Interfaces;
+namespace Dsw2026Ej15.Domain.Interfaces
+{
     public interface IPersistence
     {
-
-        Doctor? GetDoctorById(Guid id);
-        IEnumerable<Doctor> GetActiveDoctors();
-
+        Speciality? GetSpecialityById(Guid id);
+        void AddDoctor(Doctor doctor);
+        void SaveDoctor(Doctor doctor);
     }
-
+}
