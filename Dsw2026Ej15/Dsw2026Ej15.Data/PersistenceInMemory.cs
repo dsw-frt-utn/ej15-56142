@@ -4,48 +4,52 @@ using Dsw2026Ej15.Domain.Interfaces;
 using System.Numerics;
 using System.Text.Json;
 
-public class PersistenceInMemory : IPersistence
+namespace Dsw2026Ej15.Data
 {
-    private List<Speciality> _specialities = [];
-    private List<Doctor> _doctors = [];
-
-    public PersistenceInMemory()
+    public class PersistenceInMemory : IPersistence
     {
-        LoadSpecialities();
-    }
+        private List<Speciality> _specialities = [];
+        private List<Doctor> _doctors = [];
 
-    public void SaveDoctor(Doctor doctor)
-    {
-        _doctors.Add(doctor);
-    }
-
-    public Speciality? GetSpecialityById(Guid id)
-    {
-        return _specialities.FirstOrDefault(e => e.Id == id);
-    }
-
-    private void LoadSpecialities()
-    {
-        try
+        public PersistenceInMemory()
         {
-            string jsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-                "Sources", "specialities.json");
-            var json = File.ReadAllText(jsonPath);
-            var specialities = JsonSerializer.Deserialize<List<SpecialityDto>>(json,
-                new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true
-                }) ?? [];
-            _specialities = [.. specialities.Select(s => new Speciality(s.Name, s.Description, s.Id))];
+            LoadSpecialities();
         }
-        catch (Exception)
+
+        public void SaveDoctor(Doctor doctor)
         {
-
+            _doctors.Add(doctor);
         }
-    }
 
-    public void AddDoctor(Doctor doctor)
-    {
-        throw new NotImplementedException();
+        public Speciality? GetSpecialityById(Guid id)
+        {
+            return _specialities.FirstOrDefault(e => e.Id == id);
+        }
+        public Doctor? GetDoctorById(Guid id)
+        {
+            return _doctors.FirstOrDefault(d => d.Id == id);
+        }
+
+        private void LoadSpecialities()
+        {
+            try
+            {
+                string jsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+                    "Sources", "specialities.json");
+                var json = File.ReadAllText(jsonPath);
+                var specialities = JsonSerializer.Deserialize<List<SpecialityDto>>(json,
+                    new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    }) ?? [];
+                _specialities = [.. specialities.Select(s => new Speciality(s.Name, s.Description, s.Id))];
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
     }
 }
+

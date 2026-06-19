@@ -3,6 +3,7 @@ using Dsw2026Ej15.Domain.Entities;
 using Dsw2026Ej15.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using System;
 
 namespace Dsw2026Ej15.Api.Controllers
 {
@@ -13,6 +14,7 @@ namespace Dsw2026Ej15.Api.Controllers
         {
             _persistence = persistence;
         }
+
         [HttpPost("doctors")]
         public async Task<IActionResult> CreateDoctor(DoctorModel.Request request )
         {
@@ -31,6 +33,34 @@ namespace Dsw2026Ej15.Api.Controllers
 
                 return Created();
 
+        }
+        [HttpGet("doctors/{id}")]
+        public async Task<IActionResult> GetDoctorById(Guid id)
+        {
+            var doctor = _persistence.GetDoctorById(id);
+
+            if (doctor is null || !doctor.IsActive)
+                return NotFound();
+
+            var response = new DoctorModel.Response(
+                doctor.Name,
+                doctor.LicenseNumber,
+                doctor.Speciality?.Name ?? string.Empty
+            );
+            return Ok(response);
+        }
+
+        [HttpDelete("doctors/{id}")]
+        public IActionResult DeactivateDoctor(Guid id)
+        {
+            var doctor = _persistence.GetDoctorById(id);
+
+            if (doctor is null || !doctor.IsActive)
+                return NotFound();
+
+            doctor.Deactivate();
+
+            return NoContent();
         }
     }
 }

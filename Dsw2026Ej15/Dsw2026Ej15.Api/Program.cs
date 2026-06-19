@@ -3,6 +3,7 @@ using Dsw2026Ej15.Domain.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Dsw2026Ej15.Data;
 
 namespace Dsw2026Ej15.Api
 {
