@@ -2,11 +2,8 @@
 
 namespace Dsw2026Ej15.Api.Controllers
 {
-    public class AppController : Controller
+    [Route("api")]
+    public class AppController : ControllerBase
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
     }
 }

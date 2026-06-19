@@ -1,6 +1,11 @@
-﻿namespace Dsw2026Ej15.Api.Models
+﻿using System;
+
+namespace Dsw2026Ej15.Api.Models
 {
-    public class DoctorModel
+    public record DoctorModel
     {
+        public record Request(string? Name, string? LicenseNumber, Guid SpecialityId);
+
+
     }
 }
