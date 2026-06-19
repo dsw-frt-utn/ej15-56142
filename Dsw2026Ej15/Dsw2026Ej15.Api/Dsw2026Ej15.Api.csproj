@@ -7,9 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="bin\**" />
     <Compile Remove="obj\**" />
+    <Content Remove="bin\**" />
     <Content Remove="obj\**" />
+    <EmbeddedResource Remove="bin\**" />
     <EmbeddedResource Remove="obj\**" />
+    <None Remove="bin\**" />
     <None Remove="obj\**" />
   </ItemGroup>
 
@@ -23,9 +27,12 @@
     <ProjectReference Include="..\Dsw2026Ej15.Domain\Dsw2026Ej15.Domain.csproj" />
   </ItemGroup>
 
+<<<<<<< HEAD
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
 
+=======
+>>>>>>> b96ed24900018817c49bcb609e48e72c2d66e70b
 </Project>

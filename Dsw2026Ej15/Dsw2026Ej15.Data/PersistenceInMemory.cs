@@ -50,6 +50,11 @@ namespace Dsw2026Ej15.Data
             }
         }
 
+        public IEnumerable<Doctor> GetActiveDoctors()
+        {
+            return _doctors.Where(d => d.IsActive);
+
+        }
     }
 }
 
