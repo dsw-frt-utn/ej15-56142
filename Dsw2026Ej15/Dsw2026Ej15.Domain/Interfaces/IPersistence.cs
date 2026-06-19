@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Dsw2026Ej15.Domain.Interfaces
 {
-    internal class IPersistence
+    public class IPersistence
     {
     }
 }
