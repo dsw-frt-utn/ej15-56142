@@ -14,6 +14,16 @@ public class PersistenceInMemory : IPersistence
         LoadSpecialities();
     }
 
+    public void SaveDoctor(Doctor doctor)
+    {
+        _doctors.Add(doctor);
+    }
+
+    public Speciality? GetSpecialityById(Guid id)
+    {
+        return _specialities.FirstOrDefault(e => e.Id == id);
+    }
+
     private void LoadSpecialities()
     {
         try
@@ -32,5 +42,10 @@ public class PersistenceInMemory : IPersistence
         {
 
         }
+    }
+
+    public void AddDoctor(Doctor doctor)
+    {
+        throw new NotImplementedException();
     }
 }
