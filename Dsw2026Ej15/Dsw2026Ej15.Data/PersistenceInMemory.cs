@@ -44,8 +44,8 @@ public class PersistenceInMemory : IPersistence
         }
     }
 
-    public void AddDoctor(Doctor doctor)
+    public IEnumerable<Doctor> GetActiveDoctors()
     {
-        throw new NotImplementedException();
+        return _doctors.Where(d => d.IsActive);
     }
 }

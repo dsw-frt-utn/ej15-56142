@@ -14,7 +14,7 @@ namespace Dsw2026Ej15.Api.Controllers
             _persistence = persistence;
         }
         [HttpPost("doctors")]
-        public async Task<IActionResult> CreateDoctor(DoctorModel.Request request )
+        public async Task<IActionResult> CreateDoctor([FromBody] DoctorModel.Request request)
         {
             if (string.IsNullOrWhiteSpace(request.Name) || string.IsNullOrWhiteSpace(request.LicenseNumber))
             {
@@ -30,7 +30,12 @@ namespace Dsw2026Ej15.Api.Controllers
             _persistence.SaveDoctor(doctor);
 
                 return Created();
-
+        }
+        [HttpGet("doctors")]
+        public IActionResult GetDoctors()
+        {
+            var doctors = _persistence.GetActiveDoctors();
+            return Ok(doctors);
         }
     }
 }
