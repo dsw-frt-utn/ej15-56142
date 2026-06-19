@@ -2,11 +2,16 @@
 
 namespace Dsw2026Ej15.Api.Controllers
 {
-    public class DoctorsController : Controller
+
+    [ApiController]
+    [Route("[Controller]")]
+    public class DoctorsController : ControllerBase
     {
-        public IActionResult Index()
+        [HttpPost]
+        public async Task<IActionResult> CreateDoctor()
         {
-            return View();
+            return Created();
+
         }
     }
 }
