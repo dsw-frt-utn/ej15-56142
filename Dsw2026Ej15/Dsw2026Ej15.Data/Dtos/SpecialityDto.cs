@@ -4,7 +4,5 @@ using System.Text;
 
 namespace Dsw2026Ej15.Data.Dtos
 {
-    internal class SpecialityDto
-    {
-    }
+    internal record SpecialityDto(Guid Id, string Name, string Description);
 }
